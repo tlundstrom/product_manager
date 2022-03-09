@@ -20,28 +20,35 @@ const ProductForm = () => {
                 console.log(res.data);
             })
             .catch(err => console.log(err));
+
+        setDescription('');
+        setPrice(0);
+        setTitle('');
     }
 
 
 
     return(
-        <form onSubmit={submitHandler}>
-            <div className="form-group">
-                <label>Title:</label>
-                <input className="form-control" type="text" onChange={(e) => setTitle(e.target.value)} />
-            
-            <div className="form-group"></div>
-                <label>Price:</label>
-                <input className="form-control" type="number" onChange={(e) => setPrice(e.target.value)}/>
-            </div>
-            <div className="form-group">
-                <label >Description:</label>
-                <input className="form-control" type="text" onChange={(e) => setDescription(e.target.value)}/>
-            </div>
-            <div className="form-group">
-                <input class="btn btn-primary" type="submit" value="Submit" />
-            </div>
-        </form>
+        <>
+            <h1>Enter Product Details:</h1>
+            <form onSubmit={submitHandler}>
+                <div className="form-group">
+                    <label>Title:</label>
+                    <input value={title} className="form-control" type="text" onChange={(e) => setTitle(e.target.value)} />
+                
+                <div className="form-group"></div>
+                    <label>Price:</label>
+                    <input value={price} className="form-control" type="number" onChange={(e) => setPrice(e.target.value)}/>
+                </div>
+                <div className="form-group">
+                    <label >Description:</label>
+                    <input value={description} className="form-control" type="text" onChange={(e) => setDescription(e.target.value)}/>
+                </div>
+                <div className="form-group">
+                    <input class="btn btn-primary" type="submit" value="Submit" />
+                </div>
+            </form>
+        </>
     )
 }
 
