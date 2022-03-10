@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const DisplayProducts = (props) => {
-    const {removeFromDOM, products, setProducts} = props;
+    const {deleteProduct, removeFromDOM, products, setProducts} = props;
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -18,18 +18,6 @@ const DisplayProducts = (props) => {
             })
     }, [])
 
-    const deleteProduct= (id) => {
-        console.log(id);
-        axios.delete(`http://localhost:8000/api/products/${id}`)
-            .then((res) => {
-                console.log(res.data);
-                removeFromDOM(id)
-
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
 
     return(
         <div>
