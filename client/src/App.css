@@ -1,7 +1,13 @@
 .App{
-  margin:200px;
+
+  max-width: 540px;
+  margin: 50px auto;
 }
 
 .form-group{
   margin: 10px 0;
+}
+
+.btn-area>button{
+ margin: 10px;
 }
