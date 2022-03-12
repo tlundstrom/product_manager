@@ -3,37 +3,19 @@ import axios from 'axios'
 
 
 const ProductForm = (props) => {
-    const {products, setProducts} = props;
-    const [title, setTitle] = useState('');
-    const [price, setPrice] = useState(0);
-    const [description, setDescription] = useState('');
+    const {initialTitle, initialPrice, initialDescription, submitProp} = props;
+    const [title, setTitle] = useState(initialTitle);
+    const [price, setPrice] = useState(initialPrice);
+    const [description, setDescription] = useState(initialDescription);
 
     const submitHandler = (e) => {
         e.preventDefault();
 
-        axios.post('http://localhost:8000/api/products', {
-            title,
-            price,
-            description
-        })
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-                console.log(res.data.product);
-                setProducts([...products, res.data]);
-            })
-            .catch(err => console.log(err));
-
-        setDescription('');
-        setPrice(0);
-        setTitle('');
+        submitProp({title, price, description});
     }
-
-
 
     return(
         <>
-            <h1 className='text-center'>Enter Product Details</h1>
             <form onSubmit={submitHandler}>
                 <div className="form-group">
                     <label>Title:</label>
@@ -45,10 +27,10 @@ const ProductForm = (props) => {
                 </div>
                 <div className="form-group">
                     <label >Description:</label>
-                    <input value={description} className="form-control" type="text" onChange={(e) => setDescription(e.target.value)}/>
+                    <input height="100px" value={description || ""} className="form-control" type="text" onChange={(e) => setDescription(e.target.value)}/>
                 </div>
                 <div className="form-group">
-                    <input className="btn btn-success btn-lg w-100" type="submit" value="Submit" />
+                    <input className="btn btn-success" type="submit" value="Submit" />
                 </div>
             </form>
         </>
